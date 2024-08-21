@@ -6,3 +6,9 @@ export interface Employee {
   phone: string;
   birthday: string;
 }
+export enum SortOrder {
+  ByNameAscending = 'ByNameAscending',
+  ByNameDescending = 'ByNameDescending',
+  ByDateAscending = 'ByDateAscending',
+  ByDateDescending = 'ByDateDescending',
+}

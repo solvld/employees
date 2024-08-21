@@ -7,6 +7,7 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { Employee } from '@/lib/definitions';
+import { translateRole } from '@/lib/utils';
 
 interface EmployeeCardProps {
   data: Employee;
@@ -23,13 +24,13 @@ export const EmployeeCard = ({ data }: EmployeeCardProps) => {
       </CardHeader>
       <CardContent>
         <div className="flex gap-2 items-center">
-          <Badge>{data.role}</Badge>
+          <Badge>{translateRole(data.role)}</Badge>
           {data.isArchive && (
             <Badge
               variant="outline"
               className="border-destructive text-destructive"
             >
-              archive
+              В архиве
             </Badge>
           )}
         </div>
