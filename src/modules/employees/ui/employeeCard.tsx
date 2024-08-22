@@ -16,7 +16,7 @@ interface EmployeeCardProps {
 export const EmployeeCard = ({ data }: EmployeeCardProps) => {
   return (
     <Card className="w-full min-w-80 justify-self-center">
-      <CardHeader className="">
+      <CardHeader>
         <CardTitle>{data.name}</CardTitle>
         <CardDescription>
           <a href={`tel:${data.phone}`}>{data.phone}</a>

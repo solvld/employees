@@ -1,3 +1,5 @@
+import { CreateForm } from '@/modules/employees';
+
 export const CreatePage = () => {
-  return <div>CreatePage</div>;
+  return <CreateForm />;
 };

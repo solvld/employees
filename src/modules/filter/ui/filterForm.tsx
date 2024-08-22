@@ -11,7 +11,7 @@ export const FilterForm = () => {
     <Card className="md:flex gap-4 items-center w-full max-w-xs md:w-fit md:max-w-none px-4 py-2 md:sticky md:top-0">
       <CardContent className="flex flex-col gap-y-2 gap-x-4 md:flex-row py-4 justify-center">
         <SortSelect />
-        <FilterSelect options={rolesArray} />
+        <FilterSelect options={[...rolesArray, 'all']} />
 
         <FilterCheckbox />
       </CardContent>

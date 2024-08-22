@@ -8,7 +8,7 @@ export const rolesArray = (function (): string[] {
     rolesSet.add(employee.role);
   });
 
-  return [...rolesSet, 'all'];
+  return [...rolesSet];
 })();
 
 export const sortOptions = [
