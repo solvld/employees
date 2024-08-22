@@ -1,3 +1,5 @@
+import { EditForm } from '@/modules/employees';
+
 export const EditPage = () => {
-  return <div>EditPage</div>;
+  return <EditForm />;
 };

@@ -21,9 +21,16 @@ const employeesSlice = createSlice({
         id: state.employees.length + 1,
       });
     },
+    editEmployee: (state, action: PayloadAction<Employee>) => {
+      const { id } = action.payload;
+      const currentIndex = state.employees.findIndex(emp => emp.id === id);
+      state.employees[currentIndex] = {
+        ...action.payload,
+      };
+    },
   },
 });
 
-export const { addEmployee } = employeesSlice.actions;
+export const { addEmployee, editEmployee } = employeesSlice.actions;
 
 export default employeesSlice.reducer;
