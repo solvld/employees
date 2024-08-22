@@ -13,7 +13,15 @@ export function translateRole(role: string): string | null {
       return 'Водитель';
     case 'cook':
       return 'Повар';
+    case 'all':
+      return 'Все';
     default:
       return null;
   }
+}
+
+export function formatDate(dateString: string): string {
+  const [day, month, year] = dateString.split('.');
+
+  return `${year}-${month}-${day}`;
 }

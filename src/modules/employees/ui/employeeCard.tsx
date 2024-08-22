@@ -15,7 +15,7 @@ interface EmployeeCardProps {
 
 export const EmployeeCard = ({ data }: EmployeeCardProps) => {
   return (
-    <Card className="w-full justify-self-center">
+    <Card className="w-full min-w-80 justify-self-center">
       <CardHeader className="">
         <CardTitle>{data.name}</CardTitle>
         <CardDescription>

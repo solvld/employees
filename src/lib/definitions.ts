@@ -11,4 +11,11 @@ export enum SortOrder {
   ByNameDescending = 'ByNameDescending',
   ByDateAscending = 'ByDateAscending',
   ByDateDescending = 'ByDateDescending',
+  Default = 'Default',
+}
+
+export interface SortAndFilterParams {
+  role?: string;
+  isArchive: boolean | null;
+  sortOrder: SortOrder | null;
 }
