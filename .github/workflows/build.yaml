@@ -1,0 +1,20 @@
+name: Build Docker
+
+on:
+    push: 
+        branches: ['main']
+    pull_request: 
+        branches: ['main']
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v3
+            
+            - name: Build Docker Image
+              run: | 
+                docker build -t employees:latest .
+
