@@ -1,4 +1,4 @@
-name: Build Docker
+name: Build Docker and Deploy
 
 on:
     push: 
@@ -17,12 +17,22 @@ jobs:
       - name: Log in to DockerHub
         run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
 
-      - name: Build and push Docker image
+
+      - name: Create .env file from secrets
         run: |
-          docker build -t solvld/emp:latest .
-          docker push solvld/emp:latest
+          echo "VITE_DEV=${{ secrets.DEV }}" >> .env.local
+          echo "VITE_API_URL=${{ secrets.API_URL }}" >> .env.local
+         
+
+      - name: Build Docker image
+        run: docker build --env-file .env -t solvld/emp:latest .
+
+      - name: Push Docker image
+        if: github.event_name == 'push'
+        run: docker push solvld/emp:latest
 
   deploy:
+    if: github.event_name == 'push'
     needs: build-and-push
     runs-on: ubuntu-latest
 

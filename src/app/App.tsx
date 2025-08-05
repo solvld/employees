@@ -1,12 +1,13 @@
 import { Layout } from '@/components/layout';
 import { CreatePage } from '@/pages/create';
+import { DevPage } from '@/pages/dev';
 import { EditPage } from '@/pages/edit';
 import { MainPage } from '@/pages/main';
 import {
-  createBrowserRouter,
-  createRoutesFromElements,
-  Route,
-  RouterProvider,
+    createBrowserRouter,
+    createRoutesFromElements,
+    Route,
+    RouterProvider,
 } from 'react-router-dom';
 
 const router = createBrowserRouter(
@@ -15,6 +16,7 @@ const router = createBrowserRouter(
       <Route index element={<MainPage />} />
       <Route path="edit/:id" element={<EditPage />} />
       <Route path="create" element={<CreatePage />} />
+      <Route path="dev" element={<DevPage />} />
     </Route>,
   ),
 );
