@@ -25,7 +25,7 @@ jobs:
          
 
       - name: Build Docker image
-        run: docker build --env-file .env -t solvld/emp:latest .
+        run: docker build --env-file .env.local -t solvld/emp:latest .
 
       - name: Push Docker image
         if: github.event_name == 'push'
