@@ -37,17 +37,42 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Deploy via SSH
+      - name: Pull Docker image
         uses: appleboy/ssh-action@v1.0.0
         with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.SSH_KEY }}
-          script: |
-            docker pull solvld/emp:latest
-            docker stop emp || true
-            docker rm emp || true
-            docker run -d \
-            --name emp \
-            -p 80:80 \
-            solvld/emp:latest
+            host: ${{ secrets.HOST }}
+            username: ${{ secrets.USERNAME }}
+            key: ${{ secrets.SSH_KEY }}
+            script: docker pull solvld/emp:latest
+
+      - name: Stop and remove old container
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+            host: ${{ secrets.HOST }}
+            username: ${{ secrets.USERNAME }}
+            key: ${{ secrets.SSH_KEY }}
+            script: |
+                docker stop emp || true
+                docker rm emp || true
+
+      - name: Run new container
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+            host: ${{ secrets.HOST }}
+            username: ${{ secrets.USERNAME }}
+            key: ${{ secrets.SSH_KEY }}
+            script: |
+                docker run -d \
+                    --name emp \
+                    -p 80:80 \
+                    solvld/emp:latest
+
+      - name: Prune old Docker images
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+            host: ${{ secrets.HOST }}
+            username: ${{ secrets.USERNAME }}
+            key: ${{ secrets.SSH_KEY }}
+            script: |
+                docker image prune -f
+                docker images "solvld/emp" --format "{{.ID}}" | tail -n +2 | xargs -r docker rmi
